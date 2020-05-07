@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM --platform=linux/arm alpine:3.10
 
 LABEL maintainer="wolfgang.keller@wobilix.de"
 
