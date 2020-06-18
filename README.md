@@ -1,1 +1,5 @@
 # fritzcollecd
+
+## build
+
+- `docker build .`
