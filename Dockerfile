@@ -1,13 +1,22 @@
-FROM alpine:3.10.5
+FROM alpine:latest
 
 LABEL maintainer="wolfgang.keller@wobilix.de"
 
-RUN apk add --no-cache --virtual .build-deps python2-dev py-pip gcc libxslt-dev musl-dev && \
-    apk add --no-cache collectd collectd-python collectd-network bash && \
+RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex bison libtool pkgconf make libxslt-dev musl-dev linux-headers python3-dev py3-pip && \
+    apk add --no-cache py3-lxml bash && \
     pip install --no-cache-dir fritzcollectd && \
+    git clone https://github.com/collectd/collectd.git /collectd && \
+    cd /collectd && \
+    ./build.sh && \
+    ./configure --prefix="/usr" --sysconfdir="/etc/collectd" && \
+    make  && \
+    make install && \
+    cd / && \
+    rm -rf /collectd && \
     apk del --no-cache .build-deps && \
-    apk add --no-cache libxslt py-setuptools && \
+    apk add --no-cache libxslt py3-requests && \
     rm -rf /var/cache/apk/*
+
 
 VOLUME ["/etc/collectd"]
 COPY ./entrypoint.sh /

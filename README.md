@@ -2,4 +2,4 @@
 
 ## build
 
-- `docker build .`
+- `docker build -t jipp13/fritzcollecd .`
