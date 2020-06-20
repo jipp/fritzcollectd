@@ -40,7 +40,7 @@ LoadPlugin python
 ## create types.db for influxdb
 
 ```bash
-sudo sh -c "docker run --rm jipp13/fritzcollecd cat /usr/share/collectd/types.db > /docker/influxdb/etc/types.db"
+sudo sh -c "docker run --rm jipp13/fritzcollectd cat /usr/share/collectd/types.db > /docker/influxdb/etc/types.db"
 ```
 
 ## start collectd
@@ -51,5 +51,5 @@ docker run -d \
  -v /docker/collectd/etc:/etc/collectd:ro \
  --name collectd \
  --hostname collectd \
- jipp13/fritzcollecd
+ jipp13/fritzcollectd
 ```
