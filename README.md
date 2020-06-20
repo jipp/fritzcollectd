@@ -1,5 +1,5 @@
-# fritzcollecd
+# fritzcollectd
 
 ## build
 
-- `docker build -t jipp13/fritzcollecd .`
+- `docker build -t jipp13/fritzcollectd .`
