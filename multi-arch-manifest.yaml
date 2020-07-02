@@ -1,15 +1,15 @@
-image: jipp13/woke:latest
+image: jipp13/fritzcollectd:latest
 manifests:
-  - image: jipp13/woke:latest-amd64
+  - image: jipp13/fritzcollectd:latest-amd64
     platform:
       architecture: amd64
       os: linux
-  - image: jipp13/woke:latest-arm32v7
+  - image: jipp13/fritzcollectd:latest-arm32v7
     platform:
       architecture: arm
       os: linux
       variant: v7
-  - image: jipp13/woke:latest-arm64v8
+  - image: jipp13/fritzcollectd:latest-arm64v8
     platform:
       architecture: arm64
       os: linux
