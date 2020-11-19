@@ -5,7 +5,7 @@ LABEL maintainer="wolfgang.keller@wobilix.de"
 WORKDIR /
 
 RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex bison libtool pkgconf make libxslt-dev musl-dev linux-headers python3-dev py3-pip && \
-    apk add --no-cache libxslt py3-lxml py3-requests bash && \
+    apk add --no-cache libxslt py3-lxml bash tzdata && \
     pip install --no-cache-dir fritzcollectd && \
     git clone https://github.com/collectd/collectd.git collectd && \
     cd collectd && \
@@ -16,6 +16,7 @@ RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex biso
     cd .. && \
     rm -rf collectd && \
     apk del --no-cache .build-deps && \
+    apk add --no-cache py3-requests && \
     rm -rf /var/cache/apk/*
 
 VOLUME ["/etc/collectd"]

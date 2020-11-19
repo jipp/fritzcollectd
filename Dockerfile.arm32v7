@@ -4,7 +4,7 @@ FROM alpine:3.12.1 AS qemu
 ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v4.0.0%2Bbalena2/qemu-4.0.0.balena2-arm.tar.gz
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-FROM arm32v7/alpine:3.12.0
+FROM arm32v7/alpine:3.12.1
 
 # Add QEMU
 COPY --from=qemu qemu-arm-static /usr/bin
@@ -14,7 +14,7 @@ LABEL maintainer="wolfgang.keller@wobilix.de"
 WORKDIR /
 
 RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex bison libtool pkgconf make libxslt-dev musl-dev linux-headers python3-dev py3-pip && \
-    apk add --no-cache libxslt py3-lxml bash && \
+    apk add --no-cache libxslt py3-lxml bash tzdata && \
     pip install --no-cache-dir fritzcollectd && \
     git clone https://github.com/collectd/collectd.git collectd && \
     cd collectd && \
