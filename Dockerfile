@@ -1,4 +1,6 @@
-FROM alpine:3.12.3
+ARG version=latest
+
+FROM alpine:$version
 
 LABEL maintainer="wolfgang.keller@wobilix.de"
 
