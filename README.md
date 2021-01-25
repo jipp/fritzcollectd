@@ -3,14 +3,25 @@
 ## build
 
 - `docker build -t jipp13/fritzcollectd .`
+- `docker build -t jipp13/fritzcollectd --build-arg version=3.12.3 .`
 
-## config folder
+## create config folder
 
 ```bash
 sudo mkdir -p /docker/collectd/etc
 ```
 
 ## collectd.conf
+
+Without config the container will go cyclic.
+
+### copy original config from image
+
+```bash
+sudo sh -c "docker run --rm jipp13/fritzcollectd cat /etc/collectd/collectd.conf  > /docker/collectd/etc/collectd.conf"
+```
+
+### config for AVM / Fritz-Box monitoring:
 
 ```bash
 Interval    10
@@ -45,11 +56,33 @@ sudo sh -c "docker run --rm jipp13/fritzcollectd cat /usr/share/collectd/types.d
 
 ## start collectd
 
+### cli
+
 ```bash
 docker run -d \
  --restart always \
  -v /docker/collectd/etc:/etc/collectd:ro \
  --name collectd \
  --hostname collectd \
+ --security-opt seccomp=default.json \
  jipp13/fritzcollectd
+```
+
+### docker-compose
+
+```bash
+  collectd:
+    container_name: collectd
+    depends_on:
+      influxdb:
+        condition: service_started
+    environment:
+      TZ: Europe/Berlin
+    hostname: collectd
+    image: jipp13/fritzcollectd:latest
+    restart: unless-stopped
+    volumes:
+    - /docker/collectd/etc:/etc/collectd:ro
+    security_opt:
+    - seccomp:default.json
 ```
