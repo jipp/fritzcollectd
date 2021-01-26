@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "$1" = 'collectd' ]; then
+if [ $# -eq 0 ]; then
     exec /usr/sbin/collectd -f
 fi
 
