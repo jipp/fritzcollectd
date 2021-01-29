@@ -20,7 +20,7 @@ jobs:
       matrix:
         build:
         - { version: "latest", tag: "latest" }
-        - { version: "latest", tag: "alpine-latest" }
+        - { version: "3.13", tag: "alpine-3.13" }
         - { version: "3.12", tag: "alpine-3.12" }
     steps:
     - name: checkout
