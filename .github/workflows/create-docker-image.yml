@@ -26,6 +26,7 @@ jobs:
         build:
         - { version: "latest", tag: "latest" }
         - { version: "3.13", tag: "alpine-3.13" }
+        - { version: "3.13.3", tag: "alpine-3.13.3" }
         - { version: "3.13.2", tag: "alpine-3.13.2" }
         - { version: "3.12", tag: "alpine-3.12" }
         - { version: "3.12.3", tag: "alpine-3.12.3" }
