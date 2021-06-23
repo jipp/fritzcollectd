@@ -25,6 +25,8 @@ jobs:
       matrix:
         build:
         - { version: "latest", tag: "latest" }
+        - { version: "3.14", tag: "alpine-3.14" }
+        - { version: "3.14.0", tag: "alpine-3.14.0" }
         - { version: "3.13", tag: "alpine-3.13" }
         - { version: "3.13.5", tag: "alpine-3.13.5" }
         - { version: "3.13.4", tag: "alpine-3.13.4" }
