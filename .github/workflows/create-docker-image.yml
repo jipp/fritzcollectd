@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         build:
-        - { version: "latest", tag: "latest" }
+        - { version: "latest", tag: "alpine-3.13" }
         - { version: "3.14", tag: "alpine-3.14" }
         - { version: "3.14.0", tag: "alpine-3.14.0" }
         - { version: "3.13", tag: "alpine-3.13" }
