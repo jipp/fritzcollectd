@@ -28,8 +28,8 @@ jobs:
         - { version: "edge", tag: "alpine-edge" }
         - { version: "latest", tag: "alpine-latest" }
         - { version: "3.14", tag: "alpine-3.14" }
+        - { version: "3.14.2", tag: "alpine-3.14.2" }
         - { version: "3.14.1", tag: "alpine-3.14.1" }
-        - { version: "3.14.0", tag: "alpine-3.14.0" }
         - { version: "3.13", tag: "alpine-3.13" }
         - { version: "3.13.5", tag: "alpine-3.13.5" }
         - { version: "3.12", tag: "alpine-3.12" }
