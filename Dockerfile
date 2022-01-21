@@ -22,7 +22,8 @@ RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex biso
     rm -rf /var/cache/apk/*
 
 VOLUME ["/etc/collectd"]
-COPY ./entrypoint.sh /
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/collectd", "-f"]
 
