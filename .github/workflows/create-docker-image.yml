@@ -24,12 +24,12 @@ jobs:
       fail-fast: false
       matrix:
         build:
-        - { version: "edge", tag: "alpine-edge" }
-        - { version: "latest", tag: "latest" }
-        - { version: "latest", tag: "alpine-latest" }
-        - { version: "3.15", tag: "alpine-3.15" }
-        - { version: "3.14", tag: "alpine-3.14" }
-        - { version: "3.13", tag: "alpine-3.13" }
+        - { alpine_version: "edge",   tag: "alpine-edge" }
+        - { alpine_version: "latest", tag: "latest" }
+        - { alpine_version: "latest", tag: "alpine-latest" }
+        - { alpine_version: "3.15",   tag: "alpine-3.15" }
+        - { alpine_version: "3.14",   tag: "alpine-3.14" }
+        - { alpine_version: "3.13",   tag: "alpine-3.13" }
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -59,4 +59,4 @@ jobs:
         cache-from: type=local,src=/tmp/.buildx-cache-${{ matrix.build.tag }}
         cache-to: type=local,dest=/tmp/.buildx-cache-${{ matrix.build.tag }}
         build-args: |
-          version=${{ matrix.build.version }}
+          ALPINE_VERSION=${{ matrix.build.alpine_version }}
