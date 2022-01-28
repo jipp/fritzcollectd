@@ -71,6 +71,19 @@ docker run -d \
 ### docker-compose
 
 ```bash
+networks:
+  monitor:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-monitor
+    enable_ipv6: true
+    ipam:
+      config:
+      - subnet: 192.168.4.0/24
+      - subnet: fd00:0:0:4::/64
+      driver: default
+    name: monitor
+services:
   collectd:
     container_name: collectd
     depends_on:
@@ -83,6 +96,5 @@ docker run -d \
     restart: unless-stopped
     volumes:
     - /docker/collectd/etc:/etc/collectd:ro
-    security_opt:
-    - seccomp:default.json
+version: '3'
 ```
