@@ -1,0 +1,22 @@
+name: Push README to Docker Hub
+
+on:
+  push:
+    paths:
+      - "README.md"
+
+jobs:
+  push:
+    name: Push README to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+      - name: push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.PASS }}
+        with:
+          destination_container_repo: jipp13/fritzcollectd
+          provider: dockerhub
