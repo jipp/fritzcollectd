@@ -4,7 +4,6 @@ on:
   push:
     paths-ignore:
       - "**.md"
-      - "**/workflows/*.yml"
   schedule:
     - cron: "3 4 * * *"
 
@@ -19,6 +18,7 @@ jobs:
           - { alpine_version: "latest", tag: "alpine-latest" }
           - { alpine_version: "3.15", tag: "alpine-3.15" }
           - { alpine_version: "3.14", tag: "alpine-3.14" }
+          - { alpine_version: "3.13", tag: "alpine-3.13" }
     steps:
       - name: checkout
         uses: actions/checkout@v2
