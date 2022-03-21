@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         build:
-          - { alpine_version: "latest", tag: "alpine-latest" }
+          - { alpine_version: "latest", tag: "latest" }
           - { alpine_version: "3.15", tag: "alpine-3.15" }
           - { alpine_version: "3.14", tag: "alpine-3.14" }
           - { alpine_version: "3.13", tag: "alpine-3.13" }
