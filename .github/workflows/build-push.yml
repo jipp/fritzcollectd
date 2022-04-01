@@ -45,10 +45,6 @@ jobs:
           push: true
           tags: jipp13/fritzcollectd:${{ matrix.build.tag }}
           cache-from: type=local,src=/tmp/.buildx-cache-${{ matrix.build.tag }}
-          cache-to: type=local,dest=/tmp/.buildx-cache-new-${{ matrix.build.tag }}
+          cache-to: type=local,dest=/tmp/.buildx-cache-${{ matrix.build.tag }}
           build-args: |
             ALPINE_VERSION=${{ matrix.build.alpine_version }}
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache-${{ matrix.build.tag }}
-          mv /tmp/.buildx-cache-new-${{ matrix.build.tag }} /tmp/.buildx-cache-${{ matrix.build.tag }}
