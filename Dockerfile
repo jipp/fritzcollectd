@@ -6,8 +6,17 @@ LABEL maintainer="wolfgang.keller@wobilix.de"
 
 WORKDIR /
 
-RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex bison libtool pkgconf make libxslt-dev musl-dev linux-headers python3-dev py3-pip && \
-    apk add --no-cache libxslt bash tzdata musl && \
+COPY setup.py.patch /setup.py.patch
+
+RUN apk add --no-cache --virtual .build-deps git gcc autoconf automake flex bison libtool pkgconf make libxslt-dev musl-dev linux-headers python3-dev py3-pip patch && \
+    apk add --no-cache libxslt bash tzdata musl py3-lxml && \
+    git clone --branch 0.8.5 https://github.com/kbr/fritzconnection.git && \
+    cd fritzconnection && \
+    patch setup.py /setup.py.patch && \
+    rm /setup.py.patch && \
+    pip install . && \
+    cd .. && \
+    rm -rf fritzconnection && \
     pip install --no-cache-dir fritzcollectd && \
     git clone https://github.com/collectd/collectd.git collectd && \
     cd collectd && \
