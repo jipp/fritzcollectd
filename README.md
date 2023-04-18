@@ -1,5 +1,7 @@
 # fritzcollectd
 
+[![Build and push Docker Images](https://github.com/jipp/fritzcollectd/actions/workflows/build-push.yml/badge.svg)](https://github.com/jipp/fritzcollectd/actions/workflows/build-push.yml)
+
 ## build
 
 - `docker build -t jipp13/fritzcollectd .`
